@@ -32,3 +32,20 @@ export class SynapseDAOCore {
     const sc = this.score(data.value, data.velocity, data.count);
     return { score: sc, flagged: sc >= this.threshold, threshold: this.threshold };
   }
+}
+
+export class SynapseDAO {
+  private core: SynapseDAOCore;
+
+  constructor() {
+    const threshold = parseFloat(process.env.THRESHOLD ?? '0.75');
+    this.core = new SynapseDAOCore(threshold);
+  }
+
+  private async fetchData(): Promise<ProcessData> {
+    // Stub: replace with live RPC or API integration
+    return { value: 825_000, velocity: 210, count: 38 };
+  }
+
+  async run(): Promise<boolean> {
+    try {
