@@ -49,3 +49,21 @@ export class SynapseDAO {
 
   async run(): Promise<boolean> {
     try {
+      console.log('[SynapseDAO] Starting processing pipeline');
+      const data = await this.fetchData();
+      const result = this.core.process(data);
+      console.log('[SynapseDAO] Score:', result.score.toFixed(4), '| Flagged:', result.flagged);
+      if (result.flagged) {
+        console.warn(\[SynapseDAO] ACTION REQUIRED: score \ exceeds threshold \\);
+      }
+      return true;
+    } catch (err) {
+      console.error('[SynapseDAO] Pipeline failed:', err);
+      return false;
+    }
+  }
+}
+
+if (require.main === module) {
+  new SynapseDAO().run().then((ok) => process.exit(ok ? 0 : 1));
+}
