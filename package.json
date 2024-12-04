@@ -1,6 +1,6 @@
 {
   "name": "synapsedao",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AI-governed DAO with intelligent proposal analysis and vote guidance",
   "main": "dist/index.js",
   "scripts": {
