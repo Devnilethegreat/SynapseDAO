@@ -67,7 +67,3 @@ export class SynapseDAO {
 if (require.main === module) {
   new SynapseDAO().run().then((ok) => process.exit(ok ? 0 : 1));
 }
-
-# revision 6 (2024-11-26): review pass
-
-# revision 8 (2024-12-02): review pass
